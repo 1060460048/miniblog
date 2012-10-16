@@ -1,0 +1,42 @@
+<?php
+function howLong($date)
+{
+  $s=time()-strtotime($date);
+  //1分钟以内
+  if($s<60)
+  {
+    $s="刚刚";
+  }
+  //1小时以内
+  elseif($s<60*60)
+  {
+    $min=floor($s/60);
+	$s=$min."分钟前";
+  }
+  //1天以内
+  elseif($s<24*60*60)
+  {
+    $hour=floor($s/(60*60));
+	$s=$hour."小时前";
+  }
+  //31天以内
+  elseif($s<31*24*60*60)
+  {
+    $day=floor($s/(24*60*60));
+	$s=$day."天前";
+  }
+  //1年以内
+  elseif($s<365*24*60*60)
+  {
+  	$month=floor($s/(31*24*60*60));
+    $s=$month."个月前";
+  }
+  else
+  {
+    $year=floor($s/(365*24*60*60));
+	$s=$year."年前";
+  }
+  return $s;
+}
+
+?>

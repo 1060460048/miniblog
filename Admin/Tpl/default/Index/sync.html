@@ -1,0 +1,65 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+function clearn(){
+	$('#button').hide();
+	$('.loading').show();
+}
+</script>
+
+<div id="wrapper">
+	<div id="page">
+		<div id="content">		
+				<h1 class="title" style="float:none;">系统设置<span class="about">微博同步</span></h1>
+				<div >
+				<form action="__APP__/Setting/sync" method="post" >
+				  <table width="580" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >新浪  AKEY  ：</td>
+                      <td colspan="2"><input name="WB_AKEY" type="text" id="WB_AKEY" value="{$rs['WB_AKEY']}" size="30" />
+                      <span class="dark">新浪微博的A_KEY</span></td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >新浪  SKEY  ：</td>
+                      <td colspan="2"><input name="WB_SKEY" type="text" id="WB_SKEY" value="{$rs['WB_SKEY']}" size="30" />
+                      <span class="dark">新浪微博的A_KEY</span></td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >是否同步新浪：</td>
+                      <td colspan="2"><input name="update_to_sina" type="text" id="update_to_sina" value="{$rs['update_to_sina']}" size="30" maxlength="1" />
+                        <span class="dark">'1'为同步，'0'为不同步</span></td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>					
+                  </table>
+				  <div class="center" ><span class="loading">正在处理，请等候...</span><input type="submit" name="Submit" value="保存设置" onclick="clearn()" id="button"/>
+				</div>
+				</form>		        
+				</div>
+	</div><!-- end content -->
+		
+		<!-- start sidebar -->
+		<div id="sidebar">
+		<include file="Public/Html/setting_sidebar.html" />
+		</div><!-- end sidebar -->		
+		<div style="clear: both;">&nbsp;</div>
+	</div><!-- end page -->
+</div><!-- end wrapper -->
+
+
+<include file="Public/Html/foot.html" />

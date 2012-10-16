@@ -1,0 +1,34 @@
+﻿<include file="Public/Html/admin_head.html" />
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1 class="title">作品列表<span class="about">共有<span class="big">{$count}</span>个作品</span></h1>
+			
+			<volist name="work" id="vo">
+			<div id="works">
+				<div class="left"><a href="__PUBLIC__/Images/works/{$vo['pic']}" class="thickbox" title="{$vo['name']}"><img src="__PUBLIC__/Images/works/{$vo['pic']}" /></a></div>
+				<div class="right" >
+					<div class="name">{$vo['name']}</div>
+					<div class="line"></div>
+					<div>作品类型：{$vo['file']}</div>
+					<div>文件格式：{$vo['type']}</div>	
+					<div>时&nbsp;&nbsp;&nbsp;&nbsp;间：{$vo['date']}</div>					
+					<div class="line"></div>
+					<div>作品下载：对不起，暂时不提供源码下载</div>		
+				</div><!-- end rights -->
+			</div><!-- end works -->			
+			</volist>
+					
+	</div><!-- end content -->
+	
+	<div id="sidebar">
+		<ul>
+			<li><img class="zhuangshi" src="__PUBLIC__/Images/works.jpg" /></li>			
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div><!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+	
+</div><!--- end page->
+</div><!-- end wrapper -->
+<include file="Public/Html/foot.html" />

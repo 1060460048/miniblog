@@ -1,0 +1,25 @@
+<include file="Public/Html/wap_admin_head.html" />
+<div class="black">图片上传</div>
+<hr>
+<form action="__APP__/Pic/upload" method="post" enctype="multipart/form-data" >
+  <input name="photo" type="file" id="photo">
+  <input name="w_id" type="hidden" id="w_id" value="{$w_id}" />
+  <input type="submit" name="Submit" value="上传">
+</form>
+<hr>
+<div>'jpg','gif','png','jpeg','bmp'</div>
+<volist name="rs" id="rs">
+<div><img src="__PUBLIC__/Upload/wap120_{$rs['name']}" /></div>
+<hr>
+</volist>
+<?php
+if(count($rs)<>0){
+?>
+<div class="black">添加文字</div>
+<form action="__APP__/Worlds/save" method="post">
+  <textarea name="text" rows="3" id="w_text"></textarea>
+  <input name="id" type="hidden" id="w_id" value="{$_SESSION['w_id']}">
+  <input name="保存" type="submit" id="保存" value="提交">
+</form>
+<?php } ?>
+<include file="Public/Html/wap_foot.html" />

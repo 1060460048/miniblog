@@ -1,0 +1,27 @@
+﻿<include file="Public/Html/wap_head.html" />
+<div>共有{$count['total']}条微博,今日更新<span class="red">{$count['new']}</span>条</div>
+<hr>
+<volist id="vo" name="rs">
+	<div class="worlds">
+		<div><span class="blue">T.y:</span>{$vo['text']}
+		<?php if(''<>$vo['pic']) { ?>
+          </div>
+		  <volist name="vo['pic']" id="vo2">
+			  <div class="center">
+				  <a href="__APP__/Pic/vieworldsPic/id/{$vo2['name']}">
+				 	 <img src="__PUBLIC__/Upload/wap120_{$vo2['name']}" />
+				  </a>
+			  </div>
+		  </volist>
+		<?php } ?>	
+		<div>
+			<span class="dark">[{$vo['time']|howLong},手机发表]</span>
+			<a href="__APP__/Index/viewWorlds?id={$vo['id']}">评论({$vo['response']|count})</a>
+		</div>	
+<hr>	
+	</div>
+</volist>
+
+<div class="pager center">{$page_nav}</div>
+<include file="Public/Html/wap_foot.html" />
+

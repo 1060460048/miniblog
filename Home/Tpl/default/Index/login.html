@@ -1,0 +1,127 @@
+<include file="Public/Html/head.html" />
+<script type="text/javascript">
+ 
+    function jump(count) {   
+        window.setTimeout(function(){   
+            count--;   
+            if(count > 0) {   
+                $('#num').attr('innerHTML', count);   
+                jump(count);   
+            } else {   
+                location.href="__ROOT__/admin.php";   
+            }   
+        }, 1000);   
+    }   
+
+
+$.validator.setDefaults(
+  {submitHandler:function(){login();} }
+);
+
+//加载页面成功后准备验证规则
+$(document).ready(function(){userLoginCheck(); })
+
+//Check the login form
+function userLoginCheck(){
+	$("#userloginForm").validate({
+		rules: {
+			username: {required: true,minlength: 4},
+			pwd: {required: true,minlength:3},
+			verify:{required:true,minlength:4}
+		},
+		messages:{
+			username:{required:"×",minlength:"×"},
+			pwd:{required:"×",minlength:"×"},
+			verify:{required:"×",minlength:"×"}
+		}
+	});
+}
+
+function login(){
+  //得到用户输入的数据
+  var userName=$('#login #username').val();
+  var pwd=$('#login #pwd').val();
+  var verify=$('#login #verify').val();
+  
+  //执行动画
+  $('#login .button').hide();
+  $('#login .loading').show();
+  
+  //ajax提交到Login/check
+  $.ajax({
+  type:"POST",
+  data:{userName:userName,pwd:pwd,verify:verify},
+  url:"__APP__/Login/check",
+  success:function(data){
+  	msg=eval("("+data+")");
+	//alert(msg.status+msg.info);
+	if(msg.status==0){
+		$('#login #verify').val('');
+		$('#login #verify').focus();
+		$('#login .tishi').html("<span style='color:red; margin-left:5px;'>"+msg.info+"</span>");
+		$('#login .loading').hide();
+		$('#login .button').show();					
+	}else if(msg.status==1){
+		$('#login #pwd').val('');	
+	    $('#login #pwd').focus();		
+		$('#login .tishi').html("<span style='color:red; margin-left:5px;'>"+msg.info+"</span>");
+		$('#login .loading').hide();
+		$('#login .button').show();			
+	}else if(msg.status==2){		
+		$('#login .tishi').html("<span style='color:green; margin-left:5px;'>"+msg.info+"</span>");
+		$('#login .loading').hide();
+		jump(1);
+		//location.href('admin.php');	
+		}
+		
+  }
+	
+  });
+  
+  return false;
+}
+</script>
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<!-- start post-->
+<div class="post">
+			<h1 class="title">用户登录</h1>
+			<div id="login" >			
+				  <form  id="userloginForm" >
+					<div>用户名</div>
+					<div><input name="username" type="text" class="inbox" id="username" maxlength="30" /></div>
+					<br />
+					<div>密码</div>
+					<div><input name="pwd" type="password" class="inbox" id="pwd" maxlength="30" /></div>
+					<div><a href="#">忘记密码？</a></div>
+					<br />
+					<div>验证码</div>
+					<div><input name="verify" type="text" class="inbox" id="verify" maxlength="4" /><span  class="verify_error"></span></div>
+					<div><img src="__APP__/Verify/verify" class="verify"/><a href="javascript:verify()" class="verify">看不清</a></div>
+					<br />	
+					<div class="tishi center"></div>				
+					<div class="center"><span class="loading">正在登陆...</span><input type="submit" class="button" name="Submit" value="马上登录" /></div>                      
+				  </form>		    
+		    </div>
+	  </div>
+</div>
+
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+		    <br /><br /><br />
+			<li>&gt;<a href="__URL__/register">注册新用户</a></li>
+			<li>&gt;<a href="#">找回密码</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+
+<include file="Public/Html/foot.html" />

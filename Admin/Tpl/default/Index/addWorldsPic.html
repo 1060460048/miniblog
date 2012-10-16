@@ -1,0 +1,72 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+function addInput(){
+	$('#worldspic_file').append("<input name='photo[]' type='file' size='60' />");
+}
+</script>
+
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1>所有微博<span class="about">在你的微博中插入图片</span></h1>
+		
+		<php>if($_SESSION['add_worlds_pic']=='step1'){</php>	
+		<h3>选择你要插入的图片文件：</h3>
+		<form name="form" action="__APP__/Worlds/upload" method="POST" enctype="multipart/form-data">
+		<ul id="worldspic_file">		
+			<li><input name="photo[]" type="file" size="60" />	
+			</li>	
+			<li><input name="photo[]" type="file" size="60" />	
+			</li>	
+			<li><input name="photo[]" type="file" size="60" />	
+			</li>	
+			<li><input name="photo[]" type="file" size="60" />	
+			</li>
+		</ul>
+		<div id="add_upload" class="center">
+			<input name="按钮" type="button" value="增加文件" class="add_pic_file" onclick="addInput()" />
+			<input name="提交" type="submit" value="开始上传" />
+		</div>	
+		</form>	
+		<php>}</php>
+		
+		<php>if($_SESSION['add_worlds_pic']=='step2'){</php>
+			<div id="worldspic_list">
+			<h3>已上传的图片</h3>
+			<ul>
+			<volist name="rs" id="rs">
+			<li><img src="__PUBLIC__/Upload/wap160_{$rs['name']}" /><span class="del"><a href="__APP__/Worlds/removePic/p_id/{$rs['p_id']}">删除</a></span></li>
+			</volist>
+			</ul>	
+			</div>
+		<php>}</php>	
+		
+	</div><!-- end content -->
+
+
+
+
+	<div id="sidebar">	
+		<form action="__APP__/Worlds/ediWorlds" class="center" method="post" style="background:#f4f4f4;">		
+		<php>if($_SESSION['add_worlds_pic']=='step2'){</php>
+		<div class="left"><strong>为图片写上几句话：</strong></div>
+		<textarea name="text" cols="38" rows="5" class="inbox" id="text"></textarea>
+			<div class="left">插入：
+				<a href="__APP__/Worlds/link?width=400&height=70" class="thickbox" title="推荐一个网址">网址</a>|
+				<a href="__APP__/Worlds/addPic">图片</a>|
+				<!--<a href="#">音乐</a>-->
+			</div>
+			<div class="piclist"></div>
+		<input name="d" type="submit" id="add" class="button" value="发表" />
+		<php>}</php>
+		</form>
+		<ul>
+			<li>可以上传的文件类型有：</li>
+			<li>jpg,gif,png,jpeg</li>
+		</ul>
+	</div><!-- end sidebar -->
+	
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div><!-- end page -->
+<include file="Public/Html/foot.html" />

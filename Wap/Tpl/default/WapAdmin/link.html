@@ -1,0 +1,10 @@
+<include file="Public/Html/wap_admin_head.html" />
+<div class="black">友情链接：</div>
+<hr>
+<volist name="rs" id="rs">
+	<div><a href="{$rs['wapUrl']}">{$rs['linkWorlds']}</a>
+	<span class="dark">[<a class="dark" href="__URL__/Link/delLink?id={$rs['id']}">删除</a>]
+	</span></div>
+	<hr>
+</volist>
+<include file="Public/Html/wap_foot.html" />

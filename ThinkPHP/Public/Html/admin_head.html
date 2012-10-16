@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Title      : Reference
+Version    : 1.0
+Released   : 20081110
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$c['domain']}"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>TY的微博{$c['title']} {$c['version']}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="__PUBLIC__/Css/default.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Css/thickbox.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/thickbox.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.validate.js"></script>
+<script type="text/javascript">
+
+
+//Refresh the verify
+function verify(){
+	  var nowTime=new Date().getTime();
+	  $('img.verify').attr('src','__APP__/Verify/verify/'+nowTime);
+
+}
+
+function jump(count) {   
+	window.setTimeout(function(){   
+		count--;   
+		if(count > 0) {   
+			$('#num').attr('innerHTML', count);   
+			jump(count);   
+		} else {   
+			location.reload();   
+		}   
+	}, 1000);   
+}
+
+
+//隐藏和显示评论
+function hideResponse(id){
+	$('#no'+id+' #action a.link2').hide();
+	$('#no'+id+' #action a.link1').show();
+	$('#no'+id+' ul.response').slideUp('slow');     //评论列表	
+}
+
+function showResponse(id){
+	//alert(id);
+	$('#no'+id+' #action a.link1').hide();
+	$('#no'+id+' #action a.link2').show();
+	$('#no'+id+' ul.response').slideDown('slow');   //评论列表
+}
+
+function addResponse(id){
+  var text=$('#no'+id+' .inbox').val();
+  //alert(text);
+  if (text=='')
+    return false;
+  $('#no'+id+' span.loading').show();
+  $('#no'+id+' input.write_on').hide();
+  //alert('本条微薄的ID为：'+id);
+  
+  $.ajax({
+    type:"POST",
+	data:{text:text,w_id:id},
+	url:"__APP__/Response/add",
+	success:function(msg){	 
+	  $('#'+id+' span.loading').hide();
+	  $('#'+id+' input.write_on').show();
+	  //alert('服务器端返回的数据为：'+msg);	  
+	  //清空输入框
+	  $('#'+id+' .inbox').val('');
+	  //载入用户输入的回复内容
+	   $('#no'+id +' .response li.add_response').html(msg);
+	   $('#no'+id +' .response li.add_response').removeClass("add_response");
+	   
+	  }
+  });
+}
+
+</script>
+</head>
+
+<body>
+<div id="topnav">
+	<div class="left">
+		<a href="http://www.douban.com/note/102085562/" target="_blank">BUG报告！</a>
+		<php>if(''<>$_SESSION['sina_me']['id']){</php>
+		<a href="http://t.sina.com/{$_SESSION['sina_me']['id']}" title="{$_SESSION['sina_me']['name']}:{$_SESSION['sina_me']['status']['text']}" target="_blank">新浪</a>
+		<php>}</php>
+		<a href="http://www.douban.com/people/T-y/" target="_blank" title="TY@豆瓣">豆瓣</a>
+	</div>
+	<div class="right">
+		<php>if(''==$_SESSION['sina_me']['id']){</php>
+		<a href="__APP__/Sina/aurl">未同步新浪</a>
+		<php>}</php>	
+		<a href="__APP__/Msg">私信{$msg_count}</a>
+		<a href="#">设置</a>
+		<a href="__APP__/Logout/">退出</a>
+	</div>
+</div><!-- end topnav-->
+
+<div id="header" class="blue">
+	<div class="logo">
+		<a href="#"><img src="__PUBLIC__/Images/{$c['logo']}" title="{$c['title']} {$c['version']}" />
+		</a>
+	</div>	
+	<div id="menu">
+		<ul>
+			<li><a href="__APP__/Index" hidefocus>首页</a></li>
+			<li><a href="__APP__/Note" hidefocus>日记</a></li>			
+			<li><a href="__APP__/Works" hidefocus>作品</a></li>
+			<li><a href="__APP__/About" hidefocus>关于</a></li>
+			<li><a href="__APP__/Link" hidefocus>链接</a></li>
+			<li>	
+			<span class="absolute" id="search">
+				<input type="text" class="search_inbox" size="32" maxlength="29" />
+				<input type="submit" class="button search" value=" "  hidefocus  />	
+			</span>	
+			</li>
+		</ul>	
+	</div><!-- end menue-->
+</div><!-- end header -->

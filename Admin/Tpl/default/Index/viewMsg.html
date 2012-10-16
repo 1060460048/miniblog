@@ -1,0 +1,32 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+</script>
+<?php
+$id=$count['total'];
+?>
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1 class="title">查看短信<span class="about"></span>	</h1>		
+		<div id="note">		
+			<div class="date">时间：{$rs['time']}  IP：{$rs['ip']}</div>
+			<div class="content">内容：{$rs['text']}</div><!-- end content -->	
+			<br />
+			<a href="__APP__/Index/index/weibo_content/回复@[IP:{$rs['ip']|showIp}]{$rs['text']}  --">回复</a> |
+			<a href="__APP__/Msg/del/id/{$rs['id']}">删除</a>
+		</div><!-- end note -->	
+		
+	</div><!-- end content -->		
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>&gt;<a href="__APP__/Msg">返回列表</a></li>
+			<li>&gt;<a href="__APP__">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

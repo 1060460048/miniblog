@@ -1,0 +1,19 @@
+﻿<include file="Public/Html/wap_admin_head.html" />
+<include file="Public/Timer.php" />
+<div class="black">短信列表</div>
+<hr>
+<?php if($rs=='') { ?>
+<div class="center">没有短信！</div>
+<?php } ?>
+<volist id="rs" name="rs">
+<?php
+$text="<a href='__URL__/viewMsg/id/".$rs['id']."'>".substr($rs['text'],0,15)."...</a>";
+$darkText="<a class='dark' href='__APP__/Msg/viewMsg/id/".$rs['id']."'>".substr($rs['text'],0,15)."...</a>";
+if($rs['flag']==1)
+  $text=$darkText;
+?>
+<div>{$text}<span class="dark">[{$rs['tsime']|howLong}]</span></div>
+<hr>
+</volist>
+<div class="center">{$page_nav}</div>
+<include file="Public/Html/wap_foot.html" />

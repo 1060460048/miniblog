@@ -1,0 +1,35 @@
+﻿<include file="Public/Html/wap_admin_head.html" />
+<include file="Public/Timer.php" />
+<div>共有{$count['total']}条微博,今日更新<span class="red">{$count['new']}</span>条</div>
+<form action="__APP__/Worlds/addWorlds" method="post">
+<input name="text" type="text" id="w_text" maxlength="200">
+<input name="iswap" type="hidden" id="iswap" value="1" />
+<input name="写上去" type="submit" id="写上去" value="提交">
+<span><a href="__APP__/Pic/addPic">上传图片</a></span>
+</form>
+<hr>
+<volist id="vo" name="rs">
+	<div class="worlds">
+		<div><span class="blue">T.y:</span>{$vo['text']}
+		<?php if(''<>$vo['pic']) { ?>
+          </div>
+		  <volist name="vo['pic']" id="vo2">
+			  <div class="center">
+				  <a href="__APP__/Pic/vieworldsPic/id/{$vo2['name']}">
+				 	 <img src="__PUBLIC__/Upload/wap120_{$vo2['name']}" />
+				  </a>
+			  </div>
+		  </volist>
+		<?php } ?>	
+		<div>
+			<span class="dark">[{$vo['time']|howLong},手机发表]</span>
+			<a href="__APP__/Worlds/viewWorlds?id={$vo['id']}">评论({$vo['response']|count})</a>
+		</div>
+	<div>[<a href="__APP__/Worlds/ediWorlds?id={$vo['id']}">编辑</a> | <a href="__APP__/Worlds/delWorlds?id={$vo['id']}">删除</a>]</div>
+<hr>	
+	</div>
+</volist>
+
+<div class="pager center">{$page_nav}</div>
+<include file="Public/Html/wap_foot.html" />
+

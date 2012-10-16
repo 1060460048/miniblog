@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Title      : Reference
+Version    : 1.0
+Released   : 20081110
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$c['domain']}"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>{$msgTitle} TY的微博 TY_MINIBLOG BETA 1.0</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="__PUBLIC__/Css/default.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Css/thickbox.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+
+</head>
+
+<body>
+<ul id="topnav">
+
+</ul><!-- end topnav-->
+<div id="header" class="blue">
+	<div class="logo">
+		<a href="#"><img src="__PUBLIC__/Images/{$c['logo']}" title="Ty miniblog {$c['version']}" />
+		</a>
+	</div>	
+	<div id="menu">
+		<ul>
+			<li><a href="__APP__/Index" hidefocus>首页</a></li>
+			<li><a href="__APP__/Note" hidefocus>日记</a></li>			
+			<li><a href="__APP__/Works" hidefocus>作品</a></li>
+			<li><a href="__APP__/About" hidefocus>关于</a></li>
+			<li><a href="__APP__/Link" hidefocus>链接</a></li>
+			<li>	
+			<span class="absolute" id="search">
+				<input type="text" class="search_inbox" size="32" maxlength="29" />
+				<input type="submit" class="button search" value=" "  hidefocus  />	
+			</span>	
+			</li>
+		</ul>	
+	</div><!-- end menue-->
+</div><!-- end header -->
+
+  <script language="javascript">  
+        $(document).ready(function() {   
+            function jump(count) {   
+                window.setTimeout(function(){   
+                    count--;   
+                    if(count > 0) {   
+                        $('#num').attr('innerHTML', count);   
+                        jump(count);   
+                    } else {   
+                        location.href="{$jumpUrl}";   
+                    }   
+                }, 1000);   
+            }   
+            jump(3);   
+        });   
+    </script> 
+
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<!-- start post-->
+<div class="post">
+			<h1 class="title">{$msgTitle}</h1>	
+			<div id="success">		
+				<div class="center" style="margin:40px 0 40px 0;">
+				<br />
+				{$message}
+				<br />
+				<br />
+				&gt;<span id="num" class="big orange">3</span>秒后,<a href="{$jumpUrl}">跳转</a>	
+				</div>	
+			</div>	
+	  </div>
+</div>
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul><br/><br/>			
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+
+<include file="Public/Html/foot.html" />

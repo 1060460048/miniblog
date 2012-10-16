@@ -1,0 +1,36 @@
+<include file="Public/Html/head.html" />
+<script type="text/javascript">
+</script>
+<?php
+$id=$count['total'];
+?>
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1 class="title">所有日记<span class="about">共有<span class="big">{$rs|count}</span>篇日记
+		</h1>
+		
+		<volist id="rs" name="rs">	
+		<div id="note">		    	
+			<h3 class="title"><a href="__APP__/Note/view/id/{$rs['id']}">{$rs['title']}</a></h3>			
+			<div class="date">{$rs['date']}</div>
+			<div class="content">{$rs['text']|Input::deleteHtmlTags|substr=0,300}......
+			<!-- <span class="action"><a href="#">9回应</a> <a href="__APP__/Note/view/id/{$rs['id']}">浏览全文</a></span> -->
+			</div><!-- end content -->			
+		</div><!-- end note -->	
+		</volist>				
+	<div class="page_nav center">{$page_nav}</div>	
+	</div><!-- end content -->		
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>	
+			<li><img class="zhuangshi" src="__PUBLIC__/Images/note.jpg" style="width:310px;" /></li>
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

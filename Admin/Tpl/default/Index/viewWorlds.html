@@ -1,0 +1,88 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.worlds_list').show();
+})
+
+function addResponse(id){
+  var r_text=$('#'+id+' .inbox').val();
+  if (r_text=='')
+    return false;
+  $('#'+id+' span.loading').show();
+  $('#'+id+' input.write_on').hide();
+  //alert('本条微薄的ID为：'+id);
+  
+  $.ajax({
+    type:"POST",
+	data:{r_text:r_text,w_id:id},
+	url:"__APP__/Response/add",
+	success:function(msg){
+	  $('#'+id +' .list').append(msg);
+	  $('#'+id+' span.loading').hide();
+	  $('#'+id+' input.write_on').show();
+	  //alert('服务器端返回的数据为：'+msg);
+	  
+	  //清空输入框
+	  $('#'+id+' .inbox').val('');
+	  }
+  });
+}
+
+</script>
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<!-- start post-->
+		<volist name="rs" id="rs">
+		<!-- Case:hava a pic start post-->
+		<div class="post">
+			<h1 class="title">NO:{$rs['w_id']}</h1>
+		  <div class="entry">				
+				这里是内容{$vo['text']}</div>
+<?php if(''<>$rs['pic']) { ?>
+		  <volist name="rs['pic']" id="rs3">
+			    <div id="left">
+				<a href="__PUBLIC__/Upload/{$rs3['p_name']}" class="thickbox" title="">
+				<img src="__PUBLIC__/Upload/{$rs3['p_name']}" alt="hello"/>
+				</a>
+				</div>
+			</volist>
+
+<?php } ?>				
+		    <!-- Start worldBox -->
+			<div class="worldsBox" id="{$rs['w_id']}">
+			    <div class="worlds_list">
+					<div class="list">
+					    <volist name="rs['response']" id="rs2" >
+						<div class="worlds">#{$rs2['r_id']}:{$rs2['r_text']}</div>
+						</volist>
+					</div>			
+					<div class="worldsInbox">
+						<form method="get" action="" target="hideiframe">
+						<input name="r_text" type="text" class="inbox" id="inbox1" />
+						<span class="loading" id="addWorlds">处理中...</span>
+						<input type="button" class="write_on" onclick="addResponse({$rs['w_id']})" value="写上去" />
+						</form>
+					</div><!-- end worldsInbox-->
+				</div><!-- end worlsList-->					
+		    </div><!-- end worldsBox -->
+		</div>
+		<!-- end post -->	
+        </volist><!-- end volist -->
+    </div><!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul><br/><br/>
+			<li>&gt;共发表了{$count['total']}条微博,今日更新<span class="red">{$count['new']}</span>条</li>
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

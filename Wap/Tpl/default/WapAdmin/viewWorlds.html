@@ -1,0 +1,31 @@
+<include file="Public/Html/wap_admin_head.html" /><include file="Public/Timer.php" />
+	<div class="worlds">
+		<div><span class="dark">{$rs['time']|substr=5,11},{$rs['iswap']|isWap}:</span></div>"
+		{$rs['text']}"
+<?php if(''<>$rs['pic']) { ?>
+          </div>
+		  <volist name="rs['pic']" id="rs2">
+		  		<div>
+					<a href="__URL__/vieworldsPic/id/{$rs2['name']}">
+					<img src="__PUBLIC__/Upload/wap120_{$rs2['name']}" />
+					</a>
+		  		</div>				
+		  </volist>
+<?php } ?>	
+		
+</div>
+<div class="bg">评论列表，共有{$rs['response']|count}条评论</div>
+<?php if($rs['response']=='') { ?>
+<div>没有评论,赶快抢沙发吧！</div>
+<?php }?>
+<volist name="rs['response']" id="re">
+#{$re['id']}:{$re['text']}
+<hr>
+</volist>
+<form method="post" action="__APP__/Index/addResponse">
+<input name="text" type="text" id="text">
+<input name="提交" type="submit" value="写上去">
+<span><a href="__URL__/index">返回</a></span>
+<input name="w_id" type="hidden" id="w_id" value="{$rs['id']}">
+</form>
+<include file="Public/Html/wap_foot.html" />

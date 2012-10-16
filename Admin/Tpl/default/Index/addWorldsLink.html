@@ -1,0 +1,36 @@
+<script type="text/javascript" src="__PUBLIC__/Js/insert.js"></script>
+<script language="JavaScript" type="text/javascript">  
+(function($){   	   
+    $('#wText').setCaret();   
+    $('#add_link.write_on').click(function(){   
+	    var world=$('#world').val();
+	    var url=$('#url').val();
+        var value="<a href='"+url+"'>"+world+"</a>";	
+		if(world=='' || url=='')
+			return false;
+        $('#wText').insertAtCaret(value);   
+		tb_remove();
+    }); 
+  
+   
+})($);  
+  
+</script>  
+<table width="399" height="61" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="49" height="21" align="right">文字：</td>
+    <td width="350"><input name="w" type="text" class="inbox" id="world" size="50" /></td>
+  </tr>
+  <tr>
+    <td height="19" align="right">网址：</td>
+    <td><input name="l" type="text" class="inbox" id="url" size="50" /></td>
+  </tr>
+  <tr>
+    <td height="21" colspan="2" align="center"><span class="center">
+      <input name="button" type="button" id="add_link" class="write_on"  value="提交" />
+    </span></td>
+  </tr>
+</table>
+<div></div>
+<div></div>
+<div class="center"></div>

@@ -1,0 +1,25 @@
+﻿<include file="Public/Html/head.html" />
+<div id="wrapper">
+<div id="page"><!-- start page -->	
+	<div id="content"><!-- start content -->
+		<h1 class="title">友情链接<span class="about"> 已经与<span class="big">{$rs|count}</span>个好友建立了链接</span></h1>
+		
+			<div id="link">
+				<volist id="rs" name="rs">
+				<div class="item" ><a href="{$rs['www_url']}" target='_blank'>{$rs['worlds']}</a></div>
+				</volist>
+			</div><!-- end Link -->
+			
+	</div><!-- end content -->	
+	<div id="sidebar"><!-- start sidebar -->
+		<ul>
+		    <li><img class="zhuangshi" src="__PUBLIC__/Images/link.jpg" /></li>
+			<li>&gt;还没有与我建立连接？<a href="__APP__/Link/add?width=300&height=300" class="thickbox" title="添加一个新的链接">猛击这里个</a>添加一吧！</li>
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div><!-- start content -->
+</div><!-- start page -->
+
+<include file="Public/Html/foot.html" />

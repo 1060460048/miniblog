@@ -1,0 +1,70 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+function clearn(){
+	$('#button').hide();
+	$('.loading').show();
+}
+</script>
+
+<div id="wrapper">
+	<div id="page">
+		<div id="content">		
+				<h1 class="title" style="float:none;">系统设置<span class="about">缓存清理</span></h1>
+				<div >
+				<form action="__APP__/Setting/cache" method="post" >
+				  <table width="580" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="31"><label>
+                        <input name="home" type="checkbox" id="home" value="1" />
+                      </label></td>
+                      <td width="309" >电脑版前台缓存</td>
+                      <td width="102">缓存文件数：</td>
+                      <td width="138" colspan="2">{$rs['home']}</td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td valign="top" class="dark">&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td ><input name="admin" type="checkbox" id="admin" value="1" /></td>
+                      <td >电脑版后台缓存</td>
+                      <td>缓存文件数：</td>
+                      <td colspan="2">{$rs['admin']}</td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td valign="top" class="dark">&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td ><input name="wap" type="checkbox" id="wap" value="1" /></td>
+                      <td >手机版缓存</td>
+                      <td>缓存文件数：</td>
+                      <td colspan="2">{$rs['wap']}</td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td valign="top" class="dark">&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>					
+                  </table>
+				  <div class="center" ><span class="loading">正在处理，请等候...</span><input type="submit" name="Submit" value="清空缓存" onclick="clearn()" id="button"/>
+				</div>
+				</form>		        
+				</div>
+	</div><!-- end content -->
+		
+		<!-- start sidebar -->
+		<div id="sidebar">
+		<include file="Public/Html/setting_sidebar.html" />
+		</div><!-- end sidebar -->		
+		<div style="clear: both;">&nbsp;</div>
+	</div><!-- end page -->
+</div><!-- end wrapper -->
+
+
+<include file="Public/Html/foot.html" />

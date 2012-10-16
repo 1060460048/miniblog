@@ -1,0 +1,41 @@
+<include file="Public/Html/admin_head.html" />
+<div id="wrapper">
+	<div id="page">
+		<div id="content">		
+				<h1 class="title" style="float:none;">站内短信<span class="about">你有{$rs|count}条短信</span></h1>
+				
+				<ul id="link_dai">
+				<form action="__APP__/Msg/del" method="post"	>		
+					<volist id="item" name="rs">
+						<li class="link_item">
+						<input name="id[]" type="checkbox" id="id[]" value="{$item['id']}" />
+						<a href="__APP__/Msg/view/id/{$item['id']}">{$item['text']|substr=0,90}</a><span class="dark">[{$item['time']}]</span>
+						<php>if($item['flag']==0){</php>
+						<img src="__PUBLIC__/Images/new.gif" />
+						<php>}</php>
+						</li>
+					</volist>	
+				<li class="center">{$page_nav}</li>
+				<li class="center">
+				<php>if(count($rs)<>0){</php>							
+				<input name="button" type="submit" class="write_on" id="button" value="删除所选" />
+				
+				<php>}else{echo '没有短信记录！';}</php>	
+				</li>			
+				</form>
+				</ul><!-- link_dai -->
+
+	</div><!-- end content -->
+		
+		<!-- start sidebar -->
+		<div id="sidebar">
+			<ul>
+				<li><a href="__APP__/"></a></li>
+			</ul>
+		</div><!-- end sidebar -->		
+		<div style="clear: both;">&nbsp;</div>
+	</div><!-- end page -->
+</div><!-- end wrapper -->
+
+
+<include file="Public/Html/foot.html" />

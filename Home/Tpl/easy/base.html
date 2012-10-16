@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Web.py Notebook{{title}}</title>
+<style>
+html,div,td{margin:0;padding:0; font-size:12px; font-family: Geneva, Arial, Helvetica, sans-serif,"黑体","宋体";}
+body{width:900px;margin:0 auto;}
+#header{text-align:right;}
+a{color:#000000; text-decoration:none;}
+a:hover{color:#c5c5c5;}
+hr{size=1px;color:#666666}
+#header,#nav,#wrapper,#footer{padding:0 20px;}
+#nav h3{border-top:1px #666666 solid;border-bottom:1px #666666 solid; padding:5px 20px; }
+#footer div{border-top:1px #666666 solid; padding:5px 20px;}
+#wrapper{margin:5px 20px;}
+#wrapper p,blockquote{margin:5px 20px; line-height:20px; text-indent:24px;}
+#artic_list .item{margin:10px 20px; padding:10px 0;border-bottom:1px #c5c5c5 solid;}
+blockquote{background: #f4f4f4; padding:30px; text-indent:0px; color:#330000;}
+.dark{color:#999999;}
+.center{margin:0 auto; text-align:center;}
+</style>
+</head>
+<body>
+		<div id="header">
+			{% block web_name %}<h1>Web.py Notebook</h1>{% endblock %}
+			{% block subtitle %}<div>Welcome! This is a exemple project for web.py </div>{% endblock %}
+		</div>	
+		{% block nav %}
+		<div id="nav">	
+			<h3>
+			<a href="/">Index</a> |
+			<a href="/about">About</a> |
+			<a href="/download">Download</a>
+			</h3>
+		</div><!-- end nav -->
+		{% endblock %}
+		<div id="wrapper">
+			{% block title %}<h2>{{title}} </h2>{% endblock %}
+			{% block content %}<p>{{content}}</p>{% endblock %}
+		</div><!-- end wrapper -->
+		<div id="footer">
+		{% block footer %}<div>Powered by web.py &copy; <a href="http://t-y.me">TY</a> 2011 </div>{% endblock %}
+		</div><!-- end footer -->
+</body>
+</html>

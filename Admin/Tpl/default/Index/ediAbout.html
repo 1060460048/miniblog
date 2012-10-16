@@ -1,0 +1,83 @@
+<include file="Public/Html/admin_head.html" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script>
+        KE.show({
+                id : 'about_text',
+				items:[
+					'source','|',
+					'title',
+					'insertorderedlist', 'insertunorderedlist','|',
+					'link', 'unlink','|',
+					'removeformat','|',
+					//'image'
+				],
+				resizeMode:1,
+				cssPath:'__PUBLIC__/Css/default.css'
+				
+        });
+</script>
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+			<h1 class="title" style="float:none;">关于<span class="about">{$c['about']}</span></h1>
+			
+			<div id="version">
+			<form method="post" action="__APP__/About/save">
+			  <table width="100%" border="0">
+                <tr>
+                  <td><strong>签名：</strong></td>
+                </tr>
+                <tr>
+                  <td><input name="about" type="text" id="about2" value="{$rs['about']}" size="86" /></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td><strong>页面内容：</strong></td>
+                </tr>
+                <tr>
+                  <td><textarea name="about_text" cols="80" rows="20" id="about_text">{$rs['about_text']}
+                  </textarea></td>
+                </tr>
+                <tr>
+                  <td align="center">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td align="center"><label>
+                    <input type="submit" name="Submit" value="提交保存" />
+                  </label></td>
+                </tr>
+              </table>
+			<div></div>
+			<br />
+			<div></div>
+			  </form>
+			
+			</div>
+			
+			<div id="about">
+				<h3>简介：<span class="about"><strong>TY_MINIBLOG</strong>的最新版本<strong class="orange">{$c['version']}</strong>，是基于以下技术构建的：</span></h3>
+			    <ul>
+				<li><img src="__PUBLIC__/Images/php.jpg" /></li>
+				<li><img src="__PUBLIC__/Images/mysql.jpg" /></li>
+				<li><img src="__PUBLIC__/Images/thinkphp.jpg" /></li>
+				<li><img src="__PUBLIC__/Images/jquery.jpg" /></li>
+
+				</ul>
+			</div>			
+			
+</div>	<!-- end content -->
+	<div id="sidebar">
+		<ul>
+			<li><img class="zhuangshi" src="__PUBLIC__/Images/about.jpg" /></li>
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+
+<include file="Public/Html/foot.html" />

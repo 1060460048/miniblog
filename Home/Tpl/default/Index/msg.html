@@ -1,0 +1,30 @@
+<script type="text/javascript">
+
+function send(){
+  var text=$('#msg .inbox').val();
+  //alert(text);
+  if(text=='')
+    return false;
+  var loading="<div><br><br><img src='__PUBLIC__/Images/thickboxLoading.gif' /><br><br>我努力地发送...</div>"
+  $('.msg#msg').html(loading);
+  $.ajax({
+    type:"POST",
+	data:{text:text},
+	url:"__APP__/Msg/save",
+	success:function(data,textStatus)
+	{
+	  $('.msg#msg').html(data);
+	  
+	}
+	
+  });}
+  
+  
+  
+
+</script>
+<div class="center msg" id="msg">
+<textarea name="textarea" class="inbox" id="inbox2"></textarea>
+<div class="right" id="worldsLen"></div> 
+<input name="发送" class="button" type="submit" onClick="send()" hidefocus value="火速发送">
+</div>

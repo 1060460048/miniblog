@@ -1,0 +1,45 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+</script>
+<?php
+$id=$count['total'];
+?>
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1 class="title">{$rs['title']}<span class="about"></span>	</h1>		
+		<div id="note">		
+			<div class="date">{$rs['date']}</div>
+			<div class="content">{$rs['text']}</div><!-- end content -->	
+		</div><!-- end note -->	
+		
+		<php>if(isset($rs['button'])){</php>
+		<div class="conter">
+		<form method="post" action="__APP__/Note/action" class="center">
+		  <input name="title" type="hidden" id="title" value="{$rs['title']}" />
+		  <input name="text" type="hidden" id="text" value="{$rs['text']}" />
+		  <input name="button" type="submit" id="button" value="修改" />
+		  <input name="button" type="submit" id="button" value="发表" />
+		</form>
+		</div>		
+		<php>}else{</php>
+		<div class="center"><a href="__APP__/Note/edi/id/{$rs['id']}">修改</a> | 
+		<a class="del" href="__APP__/Note/del/id/{$rs['id']}">删除</a>
+		<php>}</php>
+		</div>
+
+	</div><!-- end content -->		
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>&gt;<a href="__APP__/Note/add">写新日记</a></li>	
+			<li>&gt;<a href="__APP__/Note">返回日记</a></li>
+			<li>&gt;<a href="__APP__">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

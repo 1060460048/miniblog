@@ -1,0 +1,79 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+function preview(){
+	var title=$('input#title').val();
+	var text=$('textarea#text').val();
+	tb_show('Welcome','wap.php?width=420&height=220', false);
+	//alert(title);
+	//alert(text);
+}
+</script>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script>
+        KE.show({
+                id : 'text',
+				items:[
+					'source','|',
+					'justifyleft','justifycenter','justifyright','justifyfull', '|',
+					'insertorderedlist', 'insertunorderedlist','|',
+					'link', 'unlink','|',
+					'removeformat','|',
+					'image'
+					//'emoticons',
+				],
+				resizeMode:1,
+				imageUploadJson:'__APP__/Editor/upload',
+				cssPath:'__PUBLIC__/Css/default.css'
+				
+        });
+</script>
+<?php
+$id=$count['total'];
+?>
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1 class="title">写新日记</h1>
+		<form action="__APP__/Note/add" method="post">
+		  <table width="580" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><strong>标题：</strong></td>
+            </tr>
+            <tr>
+              <td><input name="title" id="title" size="80" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>正文：</strong></td>
+            </tr>
+            <tr>
+              <td><textarea name="text" id="text" cols="80" rows="30">
+              </textarea></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="center"><input name="button" type="submit" id="button" value="发表" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+	  </form>
+	</div><!-- end content -->		
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>	
+			<li>&gt;<a href="__APP__/Note">返回日记</a></li>
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

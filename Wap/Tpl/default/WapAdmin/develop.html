@@ -1,0 +1,13 @@
+﻿<include file="Public/Html/wap_admin_head.html" />
+<include file="Public/Timer.php" />
+<div class="black">站内动态</div>
+<hr>
+<?php if($rs=='') { ?>
+<div class="center">没有短信！</div>
+<?php } ?>
+<volist id="rs" name="rs">
+<div>[微博]"<a href="__APP__/Worlds/viewWorlds/id/{$rs['id']}">{$rs['text']|substr=1,30}</a>"有新回复</div>
+<hr>
+</volist>
+<div class="center">{$page_nav}</div>
+<include file="Public/Html/wap_foot.html" />

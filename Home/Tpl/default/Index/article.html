@@ -1,0 +1,31 @@
+<include file="Public/Html/head.html" />
+<script type="text/javascript">
+</script>
+<?php
+$id=$count['total'];
+?>
+<div id="wrapper">
+<div id="page">
+	<div id="content">
+		<h1 class="title">{$rs['title']}<span class="about"></span>	</h1>
+		
+		<div id="note">		    	
+			<div class="date">{$rs['date']}</div>
+			<div class="content">{$rs['text']}
+			</div><!-- end content -->			
+		</div><!-- end note -->	
+
+	</div><!-- end content -->		
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>	
+			<li>&gt;<a href="__APP__/Note">返回日记</a></li>
+			<li>&gt;<a href="__APP__/">返回首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

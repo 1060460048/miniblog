@@ -1,0 +1,11 @@
+<include file="Public/Html/wap_admin_head.html" />
+<div class="black">确认删除</div>
+<hr>
+<div>你真的要删除：“{$rs['text']}”么？现在后悔还来的及。</div>
+<form action="__URL__/delWorlds" method="post">
+<input name="w_id" type="hidden" id="w_id" value="{$w_id}" />
+<input name="action" type="hidden" id="action" value="del">
+<input name="删除" type="submit" id="删除" value="果断删除" />
+<a href="__APP__/WapAdmin/index">我后悔了</a>
+</form>
+<include file="Public/Html/wap_foot.html" />

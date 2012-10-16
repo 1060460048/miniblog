@@ -1,0 +1,92 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+function clearn(){
+	$('#button').hide();
+	$('.loading').show();
+}
+</script>
+
+<div id="wrapper">
+	<div id="page">
+		<div id="content">		
+				<h1 class="title" style="float:none;">系统设置<span class="about">基本设置</span></h1>
+				<div >
+				<form action="__APP__/Setting/information" method="post" >
+				  <table width="580" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="27">&nbsp;</td>
+                      <td width="118" >网名：</td>
+                      <td><input name="screen_name" type="text" id="screen_name" value="{$rs['screen_name']}" size="30" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >性别：</td>
+                      <td colspan="2"><input name="sex" type="text" id="sex" value="{$rs['sex']}" size="30" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >位置：</td>
+                      <td colspan="2"><input name="location" type="text" id="location" value="{$rs['location']}" size="30" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >职业：</td>
+                      <td colspan="2"><input name="profession" type="text" id="profession" value="{$rs['profession']}" size="30" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >QQ聊天代码：</td>
+                      <td colspan="2"><input name="qq_js" type="text" id="qq_js" value="{$rs['qq_js']|Input::forTag}" size="30" /></td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2" valign="top" class="dark">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td >自我介绍：</td>
+                      <td colspan="2"><textarea name="self_introduction" cols="30" rows="10" id="self_introduction">{$rs['self_introduction']}</textarea></td>
+                    </tr>
+                    <tr>
+                      <td >&nbsp;</td>
+                      <td >&nbsp;</td>
+                      <td colspan="2">&nbsp;</td>
+                    </tr>
+                  </table>
+				  <div class="center" ><span class="loading">正在处理，请等候...</span><input type="submit" name="Submit" value="保存设置" onclick="clearn()" id="button"/>
+				</div>
+				</form>		        
+				</div>
+	</div><!-- end content -->
+		
+		<!-- start sidebar -->
+		<div id="sidebar">
+		<include file="Public/Html/setting_sidebar.html" />
+		</div><!-- end sidebar -->		
+		<div style="clear: both;">&nbsp;</div>
+	</div><!-- end page -->
+</div><!-- end wrapper -->
+
+
+<include file="Public/Html/foot.html" />

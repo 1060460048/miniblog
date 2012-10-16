@@ -1,0 +1,15 @@
+<include file="Public/Html/wap_head.html" />
+<div class="black">发送短信</div>
+<hr>
+<form action="__URL__/sendMsg" method="post">
+  <textarea name="text" rows="4" id="text">{$msgText}</textarea>
+  <br />
+  <input name="submit" type="submit" id="submit" value="发送">
+  <br />
+<a href="__URL__/index">返回首页</a>
+</form>
+<hr>
+<div class="black">联系我?</div>
+<hr>
+<div>你也可以发邮件至:{$c['adminEmail']}</div>
+<include file="Public/Html/wap_foot.html" />

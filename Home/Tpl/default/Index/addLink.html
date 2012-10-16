@@ -1,0 +1,85 @@
+<script type="text/javascript">
+
+//当验证通过后执行add函数
+$.validator.setDefaults({
+	submitHandler: function () { add(); }
+});
+
+//加载页面成功后准备验证规则
+$(document).ready(function(){  
+  userAddLinkCheck(); }
+);
+
+
+
+
+//Check the useraddlink form
+function userAddLinkCheck(){
+	$("#userAddLinkForm").validate({
+		rules: {
+			linkWorlds:{required:true,minlength:4},
+			wwwUrl: {required:true,url:true,minlength:4},
+			email:{required:true,email:true},
+			verify:{required:true,minlength:4}
+		},
+		messages:{
+			linkWorlds:{required:"×",minlength:"×"},
+			wwwUrl:{required:"×", url:"×",minlength:"×"},
+			email:{required:"×",email:"×"},
+			verify:{required:"×",minlength:"×"}
+		}
+		
+		
+	});
+}
+
+function add(){
+  
+  //取得用户输入信息
+  var linkWorlds=$('#linkWorlds').val();
+  var wwwUrl=$('#wwwUrl').val();
+  var wapUrl=$('#wapUrl').val();
+  var email=$('#email').val();   
+  
+  //显示loading信息，隐藏按钮
+  $('#add_link .loading').show();
+  $('#add_link .center input').hide();
+  
+  //AJAX提交
+  $.ajax({
+    type:"POST",
+	data:{linkWorlds:linkWorlds,wwwUrl:wwwUrl,wapUrl:wapUrl,email:email},	
+	url:"__APP__/Link/save",
+	success:function(data){	
+	var msg=eval("("+data+")");
+	if(msg.status==0){
+		$('#add_link .loading').hide();
+		$('#add_link .center input').show();
+		$('#add_link .tishi').html("<span style='color:red;'>"+msg.info+"</span>");
+	}if(msg.status==1){
+		$('#add_link .center').html('');
+		$('#add_link .tishi').html("<span style='color:green;'>"+msg.info+"</span>");
+		jump(3);}	  
+	}
+  });  
+  
+  //防止表单提交
+  return false;
+}
+
+</script>
+		<div id="add_link" >
+				  <form  id="userAddLinkForm">
+                        <div class="">链接文字</div>
+                        <input name="linkWorlds" type="text" class="inbox" id="linkWorlds" size="35" />
+                        <div class="title">电脑访问地址</div>
+                        <input name="wwwUrl" type="text" class="inbox" id="wwwUrl" size="35" />
+                        <div class="title">手机访问地址（选填）</div>
+                        <input name="wapUrl" type="text" class="inbox" id="wapUrl" size="35" />
+                        <div class="title">你的Email</div>
+                        <input name="email" type="text" class="inbox" id="email" size="35" /><br />	
+						<div class="tishi"></div>					
+                        <div class="center"><span class="loading" >处理中...</span><input type="submit" class="lbutton" name="Submit" value="填好了，提交" onclick=";" /></div>
+						
+				  </form>		    
+</div>

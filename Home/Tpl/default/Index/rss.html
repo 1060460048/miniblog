@@ -1,0 +1,21 @@
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/"
+> 
+<channel> 
+  <title>TY的RSS订阅</title> 
+  <link>{$c['domain']}</link> 
+  <language>zh-cn</language> 
+  <copyright>&amp;copy; 2010,{$c['domain']}</copyright> 
+ 
+ <volist name='rs' id='rs'>
+    <item> 
+        <title>{$rs['text']|substr=0,30}</title> 
+        <link>__APP__/Worlds/view/id/{$rs['id']}</link> 
+        <description><a href="__APP__/Worlds/view/id/{$rs['id']}">TY</a>{$rs['text']}</description> 
+        <content:encoded><![CDATA[]]></content:encoded> 
+        <dc:creator>T-y</dc:creator> 
+        <pubDate>{$rs['date']}</pubDate> 
+    </item> 
+  </volist>
+    
+    </channel> 
+</rss> 

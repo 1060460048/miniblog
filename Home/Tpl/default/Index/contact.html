@@ -1,0 +1,114 @@
+<include file="Public/Html/head.html" />
+<script type="text/javascript">
+$(document).ready(function(){contactCheck();})
+
+//Check the contact form
+function contactCheck(){
+	$("#contectForm").validate({
+		rules: {
+			name:{required:true,minlength:4},
+			email: {required:true,email:true},
+			text:{required:true,minlength:10},
+			verify:{required:true,minlength:4}
+		},
+		messages:{
+			name:{required:"你的称呼不可少",minlength:"文字太短"},
+			email:{required:"Email不可少",email:"Email格式错误"},
+			text:{required:"多少写几个字吧", minlength:"字数太少了点"},			
+			verify:{required:"验证码不能为空",minlength:"验证码长度错误"}
+		}
+	});
+}
+</script>
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<!-- start post-->
+<div class="post">
+			<h1 class="title">联系Ty</h1>
+		<div >
+				  <form method="post" action="__APP__/Contact/sendEmail" target="hideiframe" id="contectForm">
+				    <table width="430" border="0">
+                      <tr>
+                        <td width="33">&nbsp;</td>
+                        <td width="387">你的称呼</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td><label>
+                          <input name="name" class="inbox" type="text" id="name" />
+                        </label></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>你的E-mail</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td><label>
+                          <input name="email" class="inbox" type="text" id="email" />
+                        </label></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>你的留言</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td><textarea name="text" cols="72" rows="10" class="inbox" id="text"></textarea></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>验证码</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td><label>
+                          <input name="verify" class="inbox" type="text" id="verify" />
+                        <img src="__APP__/Verify/verify" class="verify" title="点击刷新" onclick="verify()"/>
+						<span class="checkVerify"></span></label></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" align="center"><label>
+                          <input type="submit" class="lbutton" name="Submit" value="填好了" />
+                        <span class="loading" id="contact"><img src="__PUBLIC__/Images/Loading.gif" /> 发送中...</span>
+						</label></td>
+                      </tr>
+                    </table>
+				  	</form>	    
+		    </div>
+	  </div>
+</div>
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>&gt;你的留言会以邮件的方式发送到Ty的信箱，Ty第一时间回复你</li>
+			<li>&gt;<a href="__APP__/">回到首页</a></li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+
+<include file="Public/Html/foot.html" />

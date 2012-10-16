@@ -1,0 +1,10 @@
+<include file="Public/Html/wap_admin_head.html" />
+<div class="black">修改记录</div>
+<hr>
+<form action="__APP__/Worlds/save" method="post">
+  <textarea name="text" rows="3" id="w_text">{$rs['text']}</textarea>
+  <input name="id" type="hidden" id="w_id" value="{$rs['id']}">
+  <input name="iswap" type="hidden" id="id" value="1" />
+  <input name="保存" type="submit" id="保存" value="提交">
+</form>
+<include file="Public/Html/wap_foot.html" />

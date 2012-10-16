@@ -1,0 +1,124 @@
+<include file="Public/Html/admin_head.html" />
+<script type="text/javascript">
+function writeOn(){
+	var text=$('form #text').val();
+	if(text=='')
+		return false;
+	$('form.center $add.button').hide();
+	$('form.center .loading').show();
+}
+
+function delWorlds(id){
+  if(!confirm("你真的要删除这条微博么？")){
+  	return false;
+  }
+
+  $.ajax({
+  	type:"POST",
+	data:{w_id:id},
+	url:"__APP__/Worlds/del",
+	success:function(data){
+		var msg=eval("("+data+")");
+		if(msg.status==1){
+			$('#no'+id).fadeOut();		
+		}		
+	}
+  });  
+}
+
+function delResponse(wid,rid){
+	alert("你真的要删除这条回复么？");
+	$.ajax({	
+		type:"POST",
+		data:{w_id:wid,r_id:rid},
+		url:"__APP__/Response/del",
+		success:function(data){
+			var msg=eval("("+data+")");
+			if(msg.status==1){
+				$('#response'+rid).fadeOut();
+			} 
+		}
+	});
+}
+
+
+  
+</script>
+
+<div id="wrapper">
+<div id="page">
+		<div id="content">
+		<h1>所有微博<span class="about">共有<span class="big">{$count['total']}</span>条微博，
+		今日发表<span class="big">{$count['new']}</span>条</span>	</h1>
+		
+		<volist name="world" id="vo">
+		<div id="no{$vo['id']}">
+		<div id="item" >				
+		  <div class="data">{$vo['time']|howLong},通过{$vo['iswap']|isWap}：</div>					  
+		  <div class="worlds">
+		  <php>if($vo['text']<>'[PIC]'){</php>
+		  		<img src="__PUBLIC__/Images/quotel.jpg" />
+				{$vo['text']|Input::makeLink}
+				<img src="__PUBLIC__/Images/quoter.jpg" />
+		  <php>}else{ echo "分享了".count($vo['pic'])."张图片"; } </php>	
+				<span id="action">
+						<a href="__APP__/Worlds/view/id/{$vo['id']}">全文</a> 
+						<a class="link1" href="javascript:void(0)"  onclick="showResponse({$vo[id]})" title="展开评论列表" >{$vo['response']|count}评论</a>
+						<a class="link2" href="javascript:void(0)"  onclick="hideResponse({$vo[id]})" title="收起评论列表" >收起评论</a>
+						<a class="link3" href="javascript:void(0)"  onclick="delWorlds({$vo['id']})">删除</a>
+				</span><!-- end action -->	
+				
+		  </div><!-- end worlds-->
+		  <ul class="pic" >
+		  <volist name="vo['pic']" id="pic">
+			    <li>
+				<a href="__PUBLIC__/Upload/{$pic['name']}" class="thickbox" title="图片@TY_MINIBLOG [http://t-y.me] 2010" >
+				<img src="__PUBLIC__/Upload/wap120_{$pic['name']}"/>
+				</a>
+				</li><!-- end pic -->
+		  </volist>
+		  </ul>
+		  	
+				<ul id="{$vo['id']}" class="response">
+					<volist name="vo['response']" id="re" >
+					<php>if($re['name']<>'' and $re['url']<>''){</php>
+					<li>{$re['text']} -<a href="{$re['url']}"  target="_blank">{$re['name']}</a></li>
+					<php>}else{</php>
+					<li>{$re['text']} -[IP:{$re['ip']}]</li>
+					<php>}</php>
+					</volist>
+					<li class="add_response">
+						<input name="r_text" type="text" class="inbox" id="inbox1" size="60" />
+						<span class="loading" id="addWorlds">处理中...</span>
+						<input type="button" class="write_on" onclick="addResponse({$vo['id']})" value="果断回复" />
+					</li>
+				</ul><!-- end response -->																					
+		</div><!-- end item -->	
+		</div><!-- end no -->				
+        </volist><!-- end volist -->
+		
+	<div class="page_nav center">{$page_nav}</div>	
+	</div><!-- end content -->
+
+	<div id="sidebar">
+		<form action="__APP__/Worlds/add" class="center" method="post" style="background:#f4f4f4;">
+		<div class="left"><strong>我说</strong></div>
+		<textarea name="text" cols="38" rows="7" class="inbox" id="text"><?php echo $_GET['weibo_content']?>
+</textarea>
+			<div class="left">插入：
+				<a href="__APP__/Worlds/addPic">图片</a>
+				<!--<a href="#">音乐</a>-->
+			</div>
+		<span class="loading">处理中，请等候...</span>
+		<input name="d" type="submit" id="add" class="button" value="发表" onclick="writeOn()" />
+		</form>
+		{:W('Develop')}
+		{:W('Douban')}
+		{:W('Link')}
+	</div>
+	<!-- end sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<include file="Public/Html/foot.html" />

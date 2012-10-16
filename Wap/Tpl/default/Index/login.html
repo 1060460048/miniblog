@@ -1,0 +1,16 @@
+<include file="Public/Html/wap_head.html" />
+<hr>
+<div class="black">用户登录</div>
+<hr>
+<div class="red">{$msg}</div>
+<form action="{$c['domain']}/wap.php/Index/check" method="post">
+<div>请输入用户名：</div>
+<input name="userName" type="text" id="userName">
+<div>请输入密码：</div>
+<input name="psd" type="password" id="psd">
+<input name="action" type="hidden" id="action" value="login">
+<br />
+<input name="火速登录" type="submit" id="火速登录" value="马上进入">
+<span><a href="__APP__/">回到首页</a></span>
+</form>
+<include file="Public/Html/wap_foot.html" />
