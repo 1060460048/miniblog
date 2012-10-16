@@ -1,2 +1,3 @@
 *.pyc
 Runtime
+ThinkPHP/Common/convention.php
