@@ -5,11 +5,11 @@
 
 截图
 ---
-**首页**
+####首页####
 ![首页](http://img1.douban.com/view/photo/photo/public/p721360981.jpg)
-**日记**
+####日记####
 ![日记](http://img1.douban.com/view/photo/photo/public/p721361120.jpg)
-**手机版**
+####手机版####
 ![手机版](http://img3.douban.com/view/photo/photo/public/p779564746.jpg)
 
 
